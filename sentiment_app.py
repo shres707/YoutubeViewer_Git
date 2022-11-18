@@ -57,7 +57,7 @@ def app():
   for p in ax.patches:
     ax.annotate(
         str(p.get_height()), xy=(p.get_x() + 0.25, p.get_height() + 0.1), fontsize=20,ha='center', va='center',
-                   size=15, xytext=(0, 8),textcoords='offset points'
+                    xytext=(0, 8),textcoords='offset points'
     )
   st.pyplot(fig)
 
