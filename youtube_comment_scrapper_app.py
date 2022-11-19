@@ -111,6 +111,8 @@ def scrape_comments_with_replies(url):
 
     df = pd.DataFrame({'Name': [i[0] for i in box], 'Comment': [i[1] for i in box], 'Time': [i[2] for i in box],
                        'Likes': [i[3] for i in box], 'Reply Count': [i[4] for i in box]})
+                       
+    df.index = df.index + 1                   
     
     test = df.astype(str)
     
@@ -118,7 +120,7 @@ def scrape_comments_with_replies(url):
        st.session_state.test=test 
        
        
-    st.dataframe(test)
+    #st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
     df.to_csv('youtube-comments_1.csv', index=False, header=True)
