@@ -112,7 +112,7 @@ def scrape_comments_with_replies(url):
     df = pd.DataFrame({'Name': [i[0] for i in box], 'Comment': [i[1] for i in box], 'Time': [i[2] for i in box],
                        'Likes': [i[3] for i in box], 'Reply Count': [i[4] for i in box]})
                        
-    df.index = df.index + 1                   
+    df.index = np.arange(1, len(df)+1)            
     
     test = df.astype(str)
     
