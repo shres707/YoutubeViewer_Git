@@ -11,7 +11,7 @@ api_key = "AIzaSyAbfQaHhx_hMGjQw4DwYsdGHfSG1cUWs3E" # Replace this  api key with
 youtube = build('youtube', 'v3', developerKey=api_key,cache_discovery=False)
 
 #box = [['Name', 'Comment', 'Time', 'Likes', 'Reply Count']]
-box=[]
+
 
 def get_id(url):
     u_pars = urlparse(url)
@@ -24,6 +24,8 @@ def get_id(url):
 
 
 def scrape_comments_with_replies(url):
+
+    box=[] 
 
     ret=validators.url(url)
    
