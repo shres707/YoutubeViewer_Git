@@ -4,6 +4,7 @@ from apiclient.discovery import build
 from urllib.error import HTTPError
 import pandas as pd
 import validators
+import numpy as np
 
 
 api_key = "AIzaSyAbfQaHhx_hMGjQw4DwYsdGHfSG1cUWs3E" # Replace this  api key with your own.
