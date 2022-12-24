@@ -131,7 +131,6 @@ def scrape_comments_with_replies(url):
 
 def app():
   st.title("YouTube Comment Reviewer")
-  st.image("https://images.app.goo.gl/hsNdX9Ymw7BgUDTV8")
   with st.form(key='myform',clear_on_submit=True):
        url = st.text_input('Enter the YouTube Url')
        submit_button = st.form_submit_button("Submit")
