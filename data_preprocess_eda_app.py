@@ -37,6 +37,7 @@ def remove_urls(text):
 
 def preprocess_comment(df):
   #Replace text to lowercase
+  
   df['Comment'] = df['Comment'].apply(lambda x: " ".join(x.lower() for x in x.split()))
   #Remove Punctuation
   df['Comment'] = df['Comment'].str.replace('[^\w\s]','')
@@ -48,7 +49,7 @@ def preprocess_comment(df):
   stop = stopwords.words('english')
   df['Comment'] = df['Comment'].apply(lambda x: " ".join(x for x in x.split() if x not in stop))
   
-  #df["Comment"] = df["Comment"].apply(lambda x: lemmatize_words(x))
+  df["Comment"] = df["Comment"].apply(lambda x: lemmatize_words(x))
   st.write(df["Comment"])
 
 def app():
