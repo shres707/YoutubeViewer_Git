@@ -27,7 +27,9 @@ def app():
   st.write(df_clean)
   df_clean['Subjectivity'] = df_clean['Comment'].apply(getSubjectivity)
   df_clean['Polarity'] = df_clean['Comment'].apply(getPolarity)
+  
   df_clean['Analysis'] = df_clean['Polarity'].apply(getAnalysis)
+  st.write(df_clean)
 
   # % Percentages:
   pcomments = df_clean[df_clean.Analysis == 'Positive']
