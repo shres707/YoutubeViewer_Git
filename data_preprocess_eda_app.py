@@ -49,7 +49,7 @@ def preprocess_comment(df):
   stop = stopwords.words('english')
   df['Comment'] = df['Comment'].apply(lambda x: " ".join(x for x in x.split() if x not in stop))
   
-  df["Comment"] = df["Comment"].apply(lambda x: lemmatize_words(x))
+  #df["Comment"] = df["Comment"].apply(lambda x: lemmatize_words(x))
   st.write(df["Comment"])
 
 def app():
