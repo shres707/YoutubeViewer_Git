@@ -24,7 +24,7 @@ def getAnalysis(score):
 def app():
   st.title("Sentiment Analysis")
   df_clean=st.session_state.test
-  st.write(df_clean)
+  #st.write(df_clean)
   df_clean['Subjectivity'] = df_clean['Comment'].apply(getSubjectivity)
   df_clean['Polarity'] = df_clean['Comment'].apply(getPolarity)
   
