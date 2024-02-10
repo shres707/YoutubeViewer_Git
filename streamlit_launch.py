@@ -26,7 +26,13 @@ Original file is located at
 # page.app()
 
 
+!python --version
 
+!pip install pipreqs
+
+!python -m pipreqs.pipreqs .
+
+!pip freeze > requirements.txt
 !pip install streamlit
 
 ! pip install streamlit-pandas-profiling

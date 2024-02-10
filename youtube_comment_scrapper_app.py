@@ -4,6 +4,7 @@ from urllib.parse import urlparse, parse_qs
 from apiclient.discovery import build
 from urllib.error import HTTPError
 import pandas as pd
+import numpy as np
 import validators
 
 
@@ -25,6 +26,8 @@ def get_id(url):
 
 
 def scrape_comments_with_replies(url):
+
+    box=[]
 
     ret=validators.url(url)
    
@@ -111,12 +114,14 @@ def scrape_comments_with_replies(url):
     df = pd.DataFrame({'Name': [i[0] for i in box], 'Comment': [i[1] for i in box], 'Time': [i[2] for i in box],
                        'Likes': [i[3] for i in box], 'Reply Count': [i[4] for i in box]})
     
+    df.index = np.arange(1, len(df)+1)   
+    
     test = df.astype(str)
     
     if test not in st.session_state:
        st.session_state.test=test 
        
-       
+    st.dataframe(test['Comment'])   
     #st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
