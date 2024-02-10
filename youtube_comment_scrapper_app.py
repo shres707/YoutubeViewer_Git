@@ -1,10 +1,10 @@
 import streamlit as st
+from google.colab import files
 from urllib.parse import urlparse, parse_qs
 from apiclient.discovery import build
 from urllib.error import HTTPError
 import pandas as pd
 import validators
-import numpy as np
 
 
 api_key = "AIzaSyAbfQaHhx_hMGjQw4DwYsdGHfSG1cUWs3E" # Replace this  api key with your own.
@@ -12,7 +12,7 @@ api_key = "AIzaSyAbfQaHhx_hMGjQw4DwYsdGHfSG1cUWs3E" # Replace this  api key with
 youtube = build('youtube', 'v3', developerKey=api_key,cache_discovery=False)
 
 #box = [['Name', 'Comment', 'Time', 'Likes', 'Reply Count']]
-
+box=[]
 
 def get_id(url):
     u_pars = urlparse(url)
@@ -25,8 +25,6 @@ def get_id(url):
 
 
 def scrape_comments_with_replies(url):
-
-    box=[] 
 
     ret=validators.url(url)
    
@@ -112,8 +110,6 @@ def scrape_comments_with_replies(url):
 
     df = pd.DataFrame({'Name': [i[0] for i in box], 'Comment': [i[1] for i in box], 'Time': [i[2] for i in box],
                        'Likes': [i[3] for i in box], 'Reply Count': [i[4] for i in box]})
-                       
-    df.index = np.arange(1, len(df)+1)            
     
     test = df.astype(str)
     
@@ -121,7 +117,7 @@ def scrape_comments_with_replies(url):
        st.session_state.test=test 
        
        
-    st.dataframe(test['Comment'])
+    #st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
     df.to_csv('youtube-comments_1.csv', index=False, header=True)

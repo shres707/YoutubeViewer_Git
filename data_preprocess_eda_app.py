@@ -37,7 +37,6 @@ def remove_urls(text):
 
 def preprocess_comment(df):
   #Replace text to lowercase
-  
   df['Comment'] = df['Comment'].apply(lambda x: " ".join(x.lower() for x in x.split()))
   #Remove Punctuation
   df['Comment'] = df['Comment'].str.replace('[^\w\s]','')

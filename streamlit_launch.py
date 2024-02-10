@@ -7,18 +7,28 @@ Original file is located at
     https://colab.research.google.com/drive/19OqKc54HFo9x4zY3p1Fk0-LngZR0v5Lf
 """
 
+! pip install https://github.com/pandas-profiling/pandas-profiling/archive/master.zip
+
+# Commented out IPython magic to ensure Python compatibility.
+# %%writefile multipage_main.py
+# import youtube_comment_scrapper_app
+# import eda_app
+# #import app2
+# import streamlit as st
+# PAGES = {
+#     "Input": youtube_comment_scrapper_app,
+#     "EDA"  : eda_app
+#     
+# }
+# st.sidebar.title('CRISP DM Navigation')
+# selection = st.sidebar.radio("Go to", list(PAGES.keys()))
+# page = PAGES[selection]
+# page.app()
+
+
+
 !pip install streamlit
 
-!pip install streamlit-pandas-profiling
-
-!pip install https://github.com/pandas-profiling/pandas-profiling/archive/master.zip
+! pip install streamlit-pandas-profiling
 
 !streamlit run multipage_main.py & npx localtunnel --port 8501
-
-!python --version
-
-!pip install pipreqs
-
-!python -m pipreqs.pipreqs .
-
-!pip freeze > requirements.txt
