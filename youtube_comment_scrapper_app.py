@@ -121,8 +121,8 @@ def scrape_comments_with_replies(url):
     if test not in st.session_state:
        st.session_state.test=test 
        
-    st.dataframe(test['Comment'])   
-    #st.dataframe(test)
+    #st.dataframe(test['Comment'])   
+    st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
     df.to_csv('youtube-comments_1.csv', index=False, header=True)
