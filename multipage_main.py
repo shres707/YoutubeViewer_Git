@@ -10,7 +10,7 @@ PAGES = {
     "Data Preprocess": data_preprocess_eda_app,
     "EDA"  : eda_app,
     "Sentiment Analysis": sentiment_app,
-    "ChatBot":chatbot_app
+    #"ChatBot":chatbot_app
     
 }
 st.sidebar.title('CRISP DM Navigation')
