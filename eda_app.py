@@ -9,7 +9,7 @@ def app():
   st.write(df)
   pr = ProfileReport(df, explorative=True)
   st.header('**Pandas Profiling Report**')
-  st_profile_report(pr)
+  st_profile_report(pr,navbar=True)
   
   
   
