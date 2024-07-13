@@ -9,8 +9,8 @@ PAGES = {
     "Input": youtube_comment_scrapper_app,
     "Data Preprocess": data_preprocess_eda_app,
     "EDA"  : eda_app,
-    "Sentiment Analysis": sentiment_app,
-    "ChatBot":chatbot_app
+    "Sentiment Analysis": sentiment_app
+
     
 }
 st.sidebar.title('CRISP DM Navigation')
