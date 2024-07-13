@@ -11,7 +11,7 @@ import streamlit as st
 import re
 import nltk
 #nltk.download('stopwords')
-nltk.download('wordnet') 
+#nltk.download('wordnet')
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
