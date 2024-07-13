@@ -2,7 +2,7 @@ import youtube_comment_scrapper_app
 import eda_app
 import data_preprocess_eda_app
 import sentiment_app
-import chatbot_app
+
 
 import streamlit as st
 PAGES = {
