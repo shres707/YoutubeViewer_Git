@@ -8,7 +8,7 @@ def app():
   df=st.session_state.test
   st.header('**Input DataFrame**')
   st.write(df)
-  pr = df.ProfileReport()
+  pr = ProfileReport(df)
 
   st.header('**Pandas Profiling Report**')
   st_profile_report(pr)
