@@ -92,7 +92,7 @@ def scrape_comments_with_replies(url):
             likes = i["snippet"]['topLevelComment']["snippet"]['likeCount']
             replies = i["snippet"]['totalReplyCount']
 
-            box.append([name, comment, published_at, likes, replies])
+            box.append([name, comment,comment_id, published_at, likes, replies])
 
             totalReplyCount = i["snippet"]['totalReplyCount']
 
@@ -111,7 +111,7 @@ def scrape_comments_with_replies(url):
                     likes = i["snippet"]['likeCount']
                     replies = ''
 
-                    box.append([name, comment, published_at, likes, replies])
+                    box.append([name, comment,comment_id, published_at, likes, replies])
 
 
 
