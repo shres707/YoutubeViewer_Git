@@ -29,6 +29,7 @@ pillow==9.5.0
 ydata-profiling
 openai
 langchain
+langchain_community
 
 
 
