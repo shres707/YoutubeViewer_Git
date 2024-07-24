@@ -19,7 +19,7 @@ def app():
   If the comment is question.Then you can try to answer the question in 25 words. If you don't know the ,then say you don't know.
   """
 
-  llm = OpenAI(temperature=0)
+  llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
   llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   st.write("Reply:"+llm_chain(latest_comment))
 
