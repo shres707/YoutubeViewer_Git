@@ -1,7 +1,10 @@
 import streamlit as st
 import openai
 openai.api_key="sk-proj-HrISrQDuBYm5CpYCACWXT3BlbkFJKngnJMYzzcfNjwdJ8DsM"
-from langchain import PromptTemplate, OpenAI, LLMChain
+
+from langchain.llms import OpenAI
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
 
 def app():
   st.title("Automatic Reply")
