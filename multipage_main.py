@@ -2,6 +2,7 @@ import youtube_comment_scrapper_app
 import eda_app
 import data_preprocess_eda_app
 import sentiment_app
+import automatic_reply_app
 
 
 import streamlit as st
@@ -9,7 +10,9 @@ PAGES = {
     "Input": youtube_comment_scrapper_app,
     "Data Preprocess": data_preprocess_eda_app,
     "EDA"  : eda_app,
-    "Sentiment Analysis": sentiment_app
+    "Sentiment Analysis": sentiment_app,
+    "Automatic Reply": automatic_reply_app
+
 
     
 }
