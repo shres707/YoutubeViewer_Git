@@ -21,7 +21,7 @@ def app():
   """
 
   llm = ChatOpenAI(model="gpt-3.5-turbo",temperature=0,openai_api_key=openai.api_key)
-  llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
-  st.write("Reply:"+llm_chain(latest_comment))
+  #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
+  st.write("Reply:"+llm(latest_comment))
 
 
