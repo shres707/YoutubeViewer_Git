@@ -30,6 +30,7 @@ ydata-profiling
 openai
 langchain
 langchain_community
+langchain_openai
 
 
 
