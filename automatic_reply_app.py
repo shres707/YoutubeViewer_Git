@@ -5,7 +5,7 @@ import streamlit as st
 #from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from transformers import pipeline
+from transformers import pipeline,AutoTokenizer,AutoModelForCausalLM
 #from langchain.llms import HuggingFaceLLM
 
 
@@ -22,13 +22,19 @@ def app():
   If the comment is question.Then you can try to answer the question in 25 words. If you don't know the ,then say you don't know.
   """
 
-  reply_model_name="distilgpt2"
+  reply_model_name="gpt2"
   #llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
   #generator=pipeline('text-generation',model=model_name)
   #llm=HuggingFaceLLM(generator)
   #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   #st.write("Reply:"+llm_chain(latest_comment))
-  reply_model=pipeline("text-generation",model=reply_model_name)
-  response = reply_model(latest_comment)
-  st.write( response[0]['generated_text'])
+  reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
+  reply_model=AutoModelForCausalLM.from_pretrained(reply_model_name)
+  prompt=prompt_template.format(comment=latest_comment)
+  inputs = reply_tokenizer(prompt, return_tensors="pt")
+  outputs = reply_model.generate(inputs.input_ids, max_length=100)
+  reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
+  #response = reply_model(latest_comment)
+  st.write( response[0]['generated_text'])
+  st.write("reply:"+reply)
