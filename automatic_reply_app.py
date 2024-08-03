@@ -1,4 +1,5 @@
 import streamlit as st
+import cohere
 #import openai
 #openai.api_key="sk-proj-HrISrQDuBYm5CpYCACWXT3BlbkFJKngnJMYzzcfNjwdJ8DsM"
 
