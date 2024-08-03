@@ -31,8 +31,7 @@ openai
 langchain
 langchain_community
 transformers
-TensorFlow
-PyTorch
+tensorflow
 
 
 
