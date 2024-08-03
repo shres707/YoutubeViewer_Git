@@ -5,7 +5,7 @@ import streamlit as st
 #from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from transformers import pipeline,AutoTokenizer,TFAutoModelForCausalLM
+from transformers import pipeline,AutoTokenizer,AutoModelForCausalLM
 #from langchain.llms import HuggingFaceLLM
 
 
@@ -28,15 +28,16 @@ def app():
   #llm=HuggingFaceLLM(generator)
   #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   #st.write("Reply:"+llm_chain(latest_comment))
-  reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
-  reply_tokenizer.add_special_tokens({'pad_token':'[PAD]'})
-  reply_model = TFAutoModelForCausalLM.from_pretrained(reply_model_name)
-  reply_model.resize_token_embeddings(len(reply_tokenizer))
+  reply_tokenizer = AutoTokenizer.from_pretrained(reply_model_name)
+  reply_model = AutoModelForCausalLM.from_pretrained(reply_model_name)
+  #reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
+  #reply_tokenizer.add_special_tokens({'pad_token':'[PAD]'})
+  #reply_model = TFAutoModelForCausalLM.from_pretrained(reply_model_name)
+  #reply_model.resize_token_embeddings(len(reply_tokenizer))
 
   prompt=prompt_template.format(comment=latest_comment)
-  inputs = reply_tokenizer(prompt, return_tensors="tf",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
-  inputs["input_ids"] = inputs["input_ids"].numpy().tolist()  # Convert to list to avoid TensorFlow errors
-  inputs["attention_mask"] = inputs["attention_mask"].numpy().tolist()
+  inputs = reply_tokenizer(prompt, return_tensors="pt",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
+
   outputs = reply_model.generate(inputs['input_ids'], max_length=100)
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
