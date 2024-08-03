@@ -47,12 +47,12 @@ def app():
     #reply = generate_reply(comment)
     #st.text_area("Reply", reply if reply else "No reply generated.", height=100)
   st.header("Latest Comment")
-  latest_comment_display = st.text_area("", latest_comment, height=100, key='latest_comment_display', disabled=True)
+  latest_comment_display = st.text_area("", latest_comment, height=200, key='latest_comment_display', disabled=True)
 
   if st.button('Generate Reply', key='generate_reply_button'):
     comment = latest_comment_display
     reply = generate_reply(comment)
     st.header("Reply")
-    st.text_area("", reply if reply else "No reply generated.", height=100, disabled=True)
+    st.text_area("", reply if reply else "No reply generated.", height=200, disabled=True)
 
 
