@@ -21,7 +21,6 @@ def app():
     - If the comment is critical feedback, reply 'Sorry for the inconvenience. We will look into the issue and get back to you.'
     - If the comment is a question, try to answer the question in 25 words. If you don't know the answer, say you don't know.
     Comment: {latest_comment}
-    Reply:
   """
 
   reply_model_name="gpt2"
