@@ -45,7 +45,7 @@ def app():
   outputs = reply_model.generate(
     input_ids=inputs["input_ids"],
     attention_mask=inputs["attention_mask"],
-    max_length=100,
+    max_length=200,
     temperature=0.7,
     top_p=0.9,
     top_k=50,
