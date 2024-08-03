@@ -38,11 +38,13 @@ def app():
     reply_tokenizer.pad_token = reply_tokenizer.eos_token
 
   prompt=prompt_template.format(comment=latest_comment)
-  inputs = reply_tokenizer(prompt, return_tensors="pt",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
+  inputs = reply_tokenizer(prompt, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
-  outputs = reply_model.generate(inputs['input_ids'], max_length=100)
+  # Generate the output
+  outputs = reply_model.generate(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
+                                 max_new_tokens=100)
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-  #response = reply_model(latest_comment)
-  st.write( response[0]['generated_text'])
+
+
   st.write("reply:"+reply)
