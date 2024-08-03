@@ -6,7 +6,7 @@ import streamlit as st
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from transformers import pipeline
-from langchain.llms import HuggingFaceLLM
+#from langchain.llms import HuggingFaceLLM
 
 
 def app():
