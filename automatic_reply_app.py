@@ -30,8 +30,9 @@ def app():
   #st.write("Reply:"+llm_chain(latest_comment))
   reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
   reply_tokenizer.add_special_tokens({'pad_token':'[PAD]'})
+  reply_model = TFAutoModelForCausalLM.from_pretrained(reply_model_name)
   reply_model.resize_token_embeddings(len(reply_tokenizer))
-  reply_model=TFAutoModelForCausalLM.from_pretrained(reply_model_name)
+
   prompt=prompt_template.format(comment=latest_comment)
   inputs = reply_tokenizer(prompt, return_tensors="tf",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
   outputs = reply_model.generate(inputs['input_ids'], max_length=100)
