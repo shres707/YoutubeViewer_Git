@@ -39,6 +39,19 @@ def app():
   st.title("Automatic Reply")
   df_clean=st.session_state.test
   latest_comment = df_clean['Comment'].values[0]
+  # Use HTML and CSS to style the boxes
+  st.markdown("""
+             <style>
+             .box {
+                 border: 2px solid #d0d0d0;
+                 border-radius: 5px;
+                 padding: 10px;
+                 margin: 10px 0;
+                 font-size: 18px;
+                 font-weight: bold;
+             }
+             </style>
+             """, unsafe_allow_html=True)
   #st.write('Latest Comment: '+latest_comment)
 
   #st.text_area('Latest Comment', latest_comment, key='latest_comment_display', height=100)
