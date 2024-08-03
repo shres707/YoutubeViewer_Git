@@ -15,8 +15,13 @@ def app():
   latest_comment = df_clean['Comment'].values[0]
   st.write('Latest Comment: '+latest_comment)
   prompt_template= f"""
-  "You are a helpful YouTube comment replying bot. The following comment will be provided to you.\nComment: {latest_comment}\nReply:"
-  """
+    You are a helpful YouTube comment replying bot. Please provide a response based on the following conditions:
+    - If the comment is appreciative, positive feedback, or neutral, reply 'Thanks for your feedback.'
+    - If the comment is critical feedback, reply 'Sorry for the inconvenience. We will look into the issue and get back to you.'
+    - If the comment is a question, try to answer the question in 25 words. If you don't know the answer, say you don't know.
+    Comment: {comment}
+    Reply:
+    """
 
   reply_model_name="gpt2"
   #llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
@@ -47,8 +52,8 @@ def app():
     eos_token_id=reply_tokenizer.eos_token_id
   )
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
-  reply = reply[len(prompt):].strip()
-
+  #reply = reply[len(prompt):].strip()
+  reply = reply.replace(prompt, '').strip()
 
 
   st.write("reply:"+reply)
