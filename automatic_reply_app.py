@@ -15,12 +15,7 @@ def app():
   latest_comment = df_clean['Comment'].values[0]
   st.write('Latest Comment: '+latest_comment)
   prompt_template= f"""
-  You are a helpful YouTube comment replying bot. The following comment will be provided to you.
-    Reply based on the following conditions:
-    - If the comment is appreciative, positive feedback, or neutral, reply 'Thanks for your feedback.'
-    - If the comment is critical feedback, reply 'Sorry for the inconvenience. We will look into the issue and get back to you.'
-    - If the comment is a question, try to answer the question in 25 words. If you don't know the answer, say you don't know.
-    Comment: {latest_comment}
+  "You are a helpful YouTube comment replying bot. The following comment will be provided to you.\nComment: {latest_comment}\nReply:"
   """
 
   reply_model_name="gpt2"
@@ -42,10 +37,15 @@ def app():
   inputs = reply_tokenizer(prompt, return_tensors="pt", truncation=True, padding=True, max_length=512)
 
   # Generate the output
-  outputs = reply_model.generate(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
-                                 max_new_tokens=100, temperature=0.7,    # Control creativity
-        top_p=0.9,          # Control the diversity
-        top_k=50    )
+  outputs = reply_model.generate(
+    input_ids=inputs["input_ids"],
+    attention_mask=inputs["attention_mask"],
+    max_length=100,
+    temperature=0.7,
+    top_p=0.9,
+    top_k=50,
+    eos_token_id=reply_tokenizer.eos_token_id
+  )
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
   reply = reply[len(prompt):].strip()
 
