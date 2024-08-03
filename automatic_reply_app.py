@@ -28,7 +28,7 @@ def app():
 
   response = co.generate(
     model='command-xlarge-nightly',
-    prompt=prompt,
+    prompt=prompt_template,
     max_tokens=50,
     temperature=0.7,
     k=0,
