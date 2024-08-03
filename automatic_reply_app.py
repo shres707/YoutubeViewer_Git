@@ -61,7 +61,7 @@ def app():
     #st.text_area("Reply", reply if reply else "No reply generated.", height=100)
   st.header("Latest Comment")
   #latest_comment_display = st.text_area("", latest_comment, height=150, key='latest_comment_display', disabled=True)
-  st.write(f"<div style='font-size: 18px; font-weight: bold;'>{latest_comment}</div>", unsafe_allow_html=True)
+  st.write(f"<div class='box'>{latest_comment}</div>", unsafe_allow_html=True)
 
   if st.button('Generate Reply', key='generate_reply_button'):
     #comment = latest_comment_display
@@ -69,6 +69,5 @@ def app():
     reply = generate_reply(comment)
     st.header("Reply")
     #st.text_area("", reply if reply else "No reply generated.", height=150, disabled=True)
-    st.write(f"<div style='font-size: 18px; font-weight: bold;'>{reply if reply else 'No reply generated.'}</div>",
-             unsafe_allow_html=True)
+    st.write(f"<div class='box'>{reply if reply else 'No reply generated.'}</div>", unsafe_allow_html=True)
 
