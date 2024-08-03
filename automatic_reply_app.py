@@ -30,5 +30,5 @@ def app():
   #st.write("Reply:"+llm_chain(latest_comment))
   reply_model=pipeline("text-generation",model=reply_model_name)
   response = reply_model(latest_comment)
-  st.write( response[0]['generate_text'])
+  st.write( response[0]['generated_text'])
 
