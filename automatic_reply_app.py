@@ -47,6 +47,7 @@ def app():
         top_p=0.9,          # Control the diversity
         top_k=50    )
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
+  reply = reply[len(prompt):].strip()
 
 
 
