@@ -1,10 +1,12 @@
 import streamlit as st
-import openai
-openai.api_key="sk-proj-HrISrQDuBYm5CpYCACWXT3BlbkFJKngnJMYzzcfNjwdJ8DsM"
+#import openai
+#openai.api_key="sk-proj-HrISrQDuBYm5CpYCACWXT3BlbkFJKngnJMYzzcfNjwdJ8DsM"
 
-from langchain.llms import OpenAI
+#from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
+from transformers import pipeline
+from langchain.llms import HuggingFaceLLM
 
 
 def app():
@@ -20,7 +22,10 @@ def app():
   If the comment is question.Then you can try to answer the question in 25 words. If you don't know the ,then say you don't know.
   """
 
-  llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
+  model_name="distilgpt2"
+  #llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
+  generator=pipeline('text-generation',model=model_name)
+  llm=HuggingFaceLLM(generator)
   llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   st.write("Reply:"+llm_chain(latest_comment))
 
