@@ -5,7 +5,7 @@ import streamlit as st
 #from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from transformers import pipeline,AutoTokenizer,AutoModelForCausalLM
+from transformers import pipeline,AutoTokenizer,TFAutoModelForCausalLM
 #from langchain.llms import HuggingFaceLLM
 
 
@@ -29,7 +29,7 @@ def app():
   #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   #st.write("Reply:"+llm_chain(latest_comment))
   reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
-  reply_model=AutoModelForCausalLM.from_pretrained(reply_model_name)
+  reply_model=TFAutoModelForCausalLM.from_pretrained(reply_model_name)
   prompt=prompt_template.format(comment=latest_comment)
   inputs = reply_tokenizer(prompt, return_tensors="pt")
   outputs = reply_model.generate(inputs.input_ids, max_length=100)
