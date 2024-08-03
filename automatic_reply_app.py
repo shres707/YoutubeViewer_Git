@@ -29,6 +29,7 @@ def app():
   #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   #st.write("Reply:"+llm_chain(latest_comment))
   reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
+  reply_tokenizer.pad_token = reply_tokenizer.eos_token
   reply_model=TFAutoModelForCausalLM.from_pretrained(reply_model_name)
   prompt=prompt_template.format(comment=latest_comment)
   inputs = reply_tokenizer(prompt, return_tensors="tf",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
