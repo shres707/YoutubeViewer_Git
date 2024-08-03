@@ -34,6 +34,8 @@ def app():
   #reply_tokenizer.add_special_tokens({'pad_token':'[PAD]'})
   #reply_model = TFAutoModelForCausalLM.from_pretrained(reply_model_name)
   #reply_model.resize_token_embeddings(len(reply_tokenizer))
+  if reply_tokenizer.pad_token is None:
+    reply_tokenizer.pad_token = reply_tokenizer.eos_token
 
   prompt=prompt_template.format(comment=latest_comment)
   inputs = reply_tokenizer(prompt, return_tensors="pt",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
