@@ -44,7 +44,7 @@ def app():
   # Generate the output
   outputs = reply_model.generate(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
                                  max_new_tokens=100)
-  reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
+  reply = reply_tokenizer.decode(outputs[1], skip_special_tokens=True)
 
 
 
