@@ -43,8 +43,10 @@ def app():
 
   # Generate the output
   outputs = reply_model.generate(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
-                                 max_new_tokens=100)
-  reply = reply_tokenizer.decode(outputs[1], skip_special_tokens=True)
+                                 max_new_tokens=100, temperature=0.7,    # Control creativity
+        top_p=0.9,          # Control the diversity
+        top_k=50    )
+  reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 
 
