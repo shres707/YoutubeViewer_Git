@@ -51,7 +51,7 @@ def app():
                  font-weight: bold;
              }
              .label {
-                font-size: 22px;
+                font-size: 30px;
                 font-weight: bold;
                 text-decoration: underline;
                 margin-top: 20px;
