@@ -41,10 +41,18 @@ def app():
   latest_comment = df_clean['Comment'].values[0]
   #st.write('Latest Comment: '+latest_comment)
 
-  st.text_area('Latest Comment', latest_comment, key='latest_comment_display', height=100)
-  if st.button('Generate Reply'):
-    comment = st.session_state.latest_comment_display
+  #st.text_area('Latest Comment', latest_comment, key='latest_comment_display', height=100)
+  #if st.button('Generate Reply'):
+    #comment = st.session_state.latest_comment_display
+    #reply = generate_reply(comment)
+    #st.text_area("Reply", reply if reply else "No reply generated.", height=100)
+  st.header("Latest Comment")
+  latest_comment_display = st.text_area("", latest_comment, height=100, key='latest_comment_display', disabled=True)
+
+  if st.button('Generate Reply', key='generate_reply_button'):
+    comment = latest_comment_display
     reply = generate_reply(comment)
-    st.text_area("Reply", reply if reply else "No reply generated.", height=100)
+    st.header("Reply")
+    st.text_area("", reply if reply else "No reply generated.", height=100, disabled=True)
 
 
