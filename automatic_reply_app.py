@@ -59,7 +59,7 @@ def app():
     #comment = st.session_state.latest_comment_display
     #reply = generate_reply(comment)
     #st.text_area("Reply", reply if reply else "No reply generated.", height=100)
-  st.header("Latest Comment")
+  st.header("Latest Comment:")
   #latest_comment_display = st.text_area("", latest_comment, height=150, key='latest_comment_display', disabled=True)
   st.write(f"<div class='box'>{latest_comment}</div>", unsafe_allow_html=True)
 
@@ -67,7 +67,7 @@ def app():
     #comment = latest_comment_display
     comment = latest_comment
     reply = generate_reply(comment)
-    st.header("Reply")
+    st.header("Reply:")
     #st.text_area("", reply if reply else "No reply generated.", height=150, disabled=True)
     st.write(f"<div class='box'>{reply if reply else 'No reply generated.'}</div>", unsafe_allow_html=True)
 
