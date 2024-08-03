@@ -5,7 +5,7 @@ import streamlit as st
 #from langchain.llms import OpenAI
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
-from transformers import pipeline,AutoTokenizer,AutoModelForCausalLM
+from transformers import pipeline,TFAutoTokenizer,TFAutoModelForCausalLM
 #from langchain.llms import HuggingFaceLLM
 
 
