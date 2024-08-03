@@ -31,7 +31,7 @@ def app():
   reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
   reply_model=TFAutoModelForCausalLM.from_pretrained(reply_model_name)
   prompt=prompt_template.format(comment=latest_comment)
-  inputs = reply_tokenizer(prompt, return_tensors="tf")
+  inputs = reply_tokenizer(prompt, return_tensors="tf",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
   outputs = reply_model.generate(inputs.input_ids, max_length=100)
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
