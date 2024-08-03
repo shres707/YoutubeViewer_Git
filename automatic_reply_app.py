@@ -28,7 +28,7 @@ def app():
   #llm=HuggingFaceLLM(generator)
   #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
   #st.write("Reply:"+llm_chain(latest_comment))
-  reply_model=pipeline("coversational",model=reply_model_name)
+  reply_model=pipeline("text-generation",model=reply_model_name)
   response = reply_model(latest_comment)
   st.write("Reply: " + response["generated_text"])
 
