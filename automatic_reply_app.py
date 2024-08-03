@@ -35,6 +35,8 @@ def app():
 
   prompt=prompt_template.format(comment=latest_comment)
   inputs = reply_tokenizer(prompt, return_tensors="tf",truncation=True, padding=True, max_length=reply_tokenizer.model_max_length)
+  inputs["input_ids"] = inputs["input_ids"].numpy().tolist()  # Convert to list to avoid TensorFlow errors
+  inputs["attention_mask"] = inputs["attention_mask"].numpy().tolist()
   outputs = reply_model.generate(inputs['input_ids'], max_length=100)
   reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
