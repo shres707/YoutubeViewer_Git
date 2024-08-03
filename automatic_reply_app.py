@@ -7,6 +7,8 @@ from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from transformers import pipeline,AutoTokenizer,AutoModelForCausalLM
 #from langchain.llms import HuggingFaceLLM
+cohere_api_key = "eH1W45sG4i7AiEgI776DKgExK22QsTkCfWWdp7ue"
+co = cohere.Client(cohere_api_key)
 
 
 def app():
@@ -23,37 +25,17 @@ def app():
     Reply:
     """
 
-  reply_model_name="gpt2"
-  #llm = OpenAI(temperature=0,openai_api_key=openai.api_key)
-  #generator=pipeline('text-generation',model=model_name)
-  #llm=HuggingFaceLLM(generator)
-  #llm_chain = LLMChain(llm=llm,prompt=PromptTemplate.from_template(prompt_template))
-  #st.write("Reply:"+llm_chain(latest_comment))
-  reply_tokenizer = AutoTokenizer.from_pretrained(reply_model_name)
-  reply_model = AutoModelForCausalLM.from_pretrained(reply_model_name)
-  #reply_tokenizer=AutoTokenizer.from_pretrained(reply_model_name)
-  #reply_tokenizer.add_special_tokens({'pad_token':'[PAD]'})
-  #reply_model = TFAutoModelForCausalLM.from_pretrained(reply_model_name)
-  #reply_model.resize_token_embeddings(len(reply_tokenizer))
-  if reply_tokenizer.pad_token is None:
-    reply_tokenizer.pad_token = reply_tokenizer.eos_token
-
-  prompt=prompt_template.format(comment=latest_comment)
-  inputs = reply_tokenizer(prompt, return_tensors="pt", truncation=True, padding=True, max_length=512)
-
-  # Generate the output
-  outputs = reply_model.generate(
-    input_ids=inputs["input_ids"],
-    attention_mask=inputs["attention_mask"],
-    max_length=200,
+  response = co.generate(
+    model='command-xlarge-nightly',
+    prompt=prompt,
+    max_tokens=50,
     temperature=0.7,
-    top_p=0.9,
-    top_k=50,
-    eos_token_id=reply_tokenizer.eos_token_id
+    k=0,
+    p=0.75,
+    stop_sequences=["Reply:"]
   )
-  reply = reply_tokenizer.decode(outputs[0], skip_special_tokens=True)
-  #reply = reply[len(prompt):].strip()
-  reply = reply.replace(prompt, '').strip()
+  reply = response.generations[0].text.strip()
+
 
 
   st.write("reply:"+reply)
