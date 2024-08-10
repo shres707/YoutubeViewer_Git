@@ -37,6 +37,7 @@ def get_transcript(video_id):
 def scrape_comments_with_replies(url):
 
     box=[]
+    transcript_data_final=[]
 
     ret=validators.url(url)
    
@@ -50,8 +51,13 @@ def scrape_comments_with_replies(url):
     #Extracting YouTube transcript
 
     transcript_data=get_transcript(ID)
-    st.write("transcript_data")
-    st.write(transcript_data)
+
+    for item in transcript_data:
+        for key,val in  item.items():
+            transcript_data_final.append(val)
+
+    st.write("transcript_data_final")
+    st.write(transcript_data_final)
 
     
     try:
