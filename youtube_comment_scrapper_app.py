@@ -38,7 +38,7 @@ def get_transcript(video_id):
                 return "No Transcript Found"
     if isinstance(transcript_list, str):
         return "No Transcript Found"
-
+    st_write(transcript_list)
     transcript_data = [t['text'] for t in transcript_list]
     st.write("Tarnscript_Data")
     st.write(transcript_data)
