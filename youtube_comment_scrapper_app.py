@@ -51,7 +51,7 @@ def scrape_comments_with_replies(url):
 
     transcript_data=get_transcript(ID)
     st_write(type(transcript_data))
-    st.write("trascript_data")
+    st.write("transcript_data")
     st.write(transcript_data)
 
     
