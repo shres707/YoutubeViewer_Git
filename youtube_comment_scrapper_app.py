@@ -39,10 +39,10 @@ def get_transcript(video_id):
                 return "No Transcript Found"
     if isinstance(transcript_list, str):
         return "No Transcript Found"
-    st_write(transcript_list)
+
     transcript_data = [t['text'] for t in transcript_list]
-    st.write("Tarnscript_Data")
-    st.write(transcript_data)
+
+    return transcript_data
 
 
 
@@ -61,10 +61,12 @@ def scrape_comments_with_replies(url):
 
     #Extracting YouTube transcript
 
-    get_transcript(ID)
+    transcript_data=get_transcript(ID)
+    st.write("trascript_data")
+    st.write(transcript_data)
 
     
-    '''try:   
+    try:
         data = youtube.commentThreads().list(part='snippet', videoId=ID, maxResults='100', textFormat="plainText").execute()
 
     except Exception as e:
@@ -154,7 +156,7 @@ def scrape_comments_with_replies(url):
     st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
-    df.to_csv('youtube-comments_1.csv', index=False, header=True)'''
+    df.to_csv('youtube-comments_1.csv', index=False, header=True)
 
 
     #return "Successful! Check the CSV file that you have just created."
