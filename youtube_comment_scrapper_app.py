@@ -6,6 +6,7 @@ from urllib.error import HTTPError
 import pandas as pd
 import numpy as np
 import validators
+from youtube_transcript_api import YouTubeTranscriptApi
 
 
 api_key = "AIzaSyAbfQaHhx_hMGjQw4DwYsdGHfSG1cUWs3E" # Replace this  api key with your own.
@@ -24,6 +25,24 @@ def get_id(url):
     if pth:
         return pth[-1]
 
+def get_transcript(video_id):
+    try:
+        transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
+    except:
+        try:
+            transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en-US'])
+        except:
+            try:
+                transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en-GB'])
+            except:
+                return "No Transcript Found"
+    if isinstance(transcript_list, str):
+        return "No Transcript Found"
+
+    transcript_data = [t['text'] for t in transcript_list]
+    st.write(transcript_data)
+
+
 
 def scrape_comments_with_replies(url):
 
@@ -37,6 +56,10 @@ def scrape_comments_with_replies(url):
       return
 
     ID=get_id(url)
+
+    #Extracting YouTube transcript
+
+    get_transcript(ID)
 
     
     try:   

@@ -33,6 +33,7 @@ langchain_community
 transformers
 torch
 cohere
+youtube-transcript-api
 
 
 
