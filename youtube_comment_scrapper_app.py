@@ -27,22 +27,10 @@ def get_id(url):
 
 def get_transcript(video_id):
 
-    try:
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-    except:
-        try:
-            transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en-US'])
-        except:
-            try:
-                transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en-GB'])
-            except:
-                return "No Transcript Found"
-    if isinstance(transcript_list, str):
-        return "No Transcript Found"
 
-    transcript_data = [t['text'] for t in transcript_list]
-
-    return transcript_data
+   transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+   transcript_data = [t['text'] for t in transcript_list]
+   return transcript_data
 
 
 
