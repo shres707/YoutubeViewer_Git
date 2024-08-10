@@ -26,6 +26,7 @@ def get_id(url):
         return pth[-1]
 
 def get_transcript(video_id):
+    st_write("Inside get_transcript")
     try:
         transcript_list = YouTubeTranscriptApi.get_transcript(video_id, languages=['en'])
     except:
