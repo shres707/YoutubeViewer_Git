@@ -50,7 +50,6 @@ def scrape_comments_with_replies(url):
     #Extracting YouTube transcript
 
     transcript_data=get_transcript(ID)
-    st_write(type(transcript_data))
     st.write("transcript_data")
     st.write(transcript_data)
 
