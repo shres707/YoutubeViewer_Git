@@ -40,6 +40,7 @@ def get_transcript(video_id):
         return "No Transcript Found"
 
     transcript_data = [t['text'] for t in transcript_list]
+    st.write("Tarnscript_Data")
     st.write(transcript_data)
 
 
