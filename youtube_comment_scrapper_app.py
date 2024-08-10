@@ -63,7 +63,7 @@ def scrape_comments_with_replies(url):
     get_transcript(ID)
 
     
-    try:   
+    '''try:   
         data = youtube.commentThreads().list(part='snippet', videoId=ID, maxResults='100', textFormat="plainText").execute()
 
     except Exception as e:
@@ -153,7 +153,7 @@ def scrape_comments_with_replies(url):
     st.dataframe(test)
     st.write("Comments have been Successfully Scrapped and stored as DataFrame")
     
-    df.to_csv('youtube-comments_1.csv', index=False, header=True)
+    df.to_csv('youtube-comments_1.csv', index=False, header=True)'''
 
 
     #return "Successful! Check the CSV file that you have just created."
