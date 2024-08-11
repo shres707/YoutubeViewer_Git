@@ -26,18 +26,9 @@ def get_id(url):
         return pth[-1]
 
 def get_transcript(video_id):
-
-
    transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-   transcript_data=[]
-   for dic in transcript_list:
-       for key,value in dic.items():
-           if key == 'text':
-               transcript_data.append(value)
-   #transcript_data = [t['text'] for t in transcript_list]
+   transcript_data = [t['text'] for t in transcript_list]
    return transcript_data
-
-
 
 def scrape_comments_with_replies(url):
 
@@ -62,8 +53,10 @@ def scrape_comments_with_replies(url):
 
     st.write("transcript_data_final")
     st.write(transcript_data_final)'''
+    for data in transcript_data:
+        st.write(data)
 
-    st.write(transcript_data)
+    #st.write(transcript_data)
 
     
     try:
