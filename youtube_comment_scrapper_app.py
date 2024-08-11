@@ -29,7 +29,12 @@ def get_transcript(video_id):
 
 
    transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-   transcript_data = [t['text'] for t in transcript_list]
+   transcript_data=[]
+   for dic in transcript_list:
+       for key,value in dic.items():
+           if key == 'text':
+               transcript_data.append(value)
+   #transcript_data = [t['text'] for t in transcript_list]
    return transcript_data
 
 
