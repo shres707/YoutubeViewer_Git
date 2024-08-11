@@ -52,13 +52,13 @@ def scrape_comments_with_replies(url):
 
     transcript_data=get_transcript(ID)
 
-    for key,val in transcript_data.items():
+    '''for key,val in transcript_data.items():
         transcript_data_final.append(val)
 
     st.write("transcript_data_final")
-    st.write(transcript_data_final)
+    st.write(transcript_data_final)'''
 
-    st.write(transcript_data_final)
+    st.write(transcript_data)
 
     
     try:
