@@ -3,6 +3,20 @@ import cohere
 cohere_api_key = "eH1W45sG4i7AiEgI776DKgExK22QsTkCfWWdp7ue"
 co = cohere.Client(cohere_api_key)
 
+def get_response_from_cohere(context, query):
+    # Construct the prompt
+    prompt = f"Text: {context}\nQuestion: {query}\nYou are a chatbot designed to assist the users. Answer only the questions based on the text provided. If the text doesn't contain the answer, reply that the answer is not available. Keep the answers precise to the question."
+
+    # Get the response from Cohere
+    response = co.generate(
+        model="command",
+        prompt=prompt,
+        max_tokens=150,
+        temperature=0
+    )
+
+    return response.generations[0].text.strip()
+
 def app():
   st.title("YouTube Comment ChatBot")
   df_clean = st.session_state.test
