@@ -21,11 +21,11 @@ def app():
   if user_question is not None:
       st.session_state.messages.append({"role": "user", "content": user_question})
 
-      with st.chat_message("user"):
+      with st.write("user"):
           st.write(user_question)
 
       if st.session_state.messages[-1]["role"] != "assistant":
-          with st.chat_message("assistant"):
+          with st.write("assistant"):
               with st.spinner("Loading"):
                   ai_response = get_response_from_cohere(context, user_question)
                   st.write(ai_response)
