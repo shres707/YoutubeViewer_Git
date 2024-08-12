@@ -5,7 +5,7 @@ co = cohere.Client(cohere_api_key)
 
 def app():
   st.title("YouTube Transcript Summariser")
-  transscript_data = st.session_state.transcript_data
+  transript_data = st.session_state.transcript_data
 
   response = co.summarize(
       text=transcript_data,
