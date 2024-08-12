@@ -101,7 +101,7 @@ def app():
         comment = latest_comment
         transcript_data = st.session_state.transcript_data
         video_summary = " ".join(transcript_data)
-        comment="which nation badminton players does video discuss?"
+        comment="which exercises are discussed in video"
         reply = generate_reply(comment, video_summary)
         # st.header("Reply:")
         st.markdown('<p class="label">Reply:</p>', unsafe_allow_html=True)
