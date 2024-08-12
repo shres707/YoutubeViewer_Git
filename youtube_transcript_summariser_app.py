@@ -1,4 +1,7 @@
 import streamlit as st
+import cohere
+cohere_api_key = "eH1W45sG4i7AiEgI776DKgExK22QsTkCfWWdp7ue"
+co = cohere.Client(cohere_api_key)
 
 def app():
   st.title("YouTube Transcript Summariser")
