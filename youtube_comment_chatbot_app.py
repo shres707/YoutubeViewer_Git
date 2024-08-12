@@ -11,7 +11,7 @@ def get_response_from_cohere(context, query):
     response = co.generate(
         model="command",
         prompt=prompt,
-        max_tokens=150,
+        max_tokens=1000,
         temperature=0
     )
 
