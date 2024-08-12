@@ -10,25 +10,22 @@ def app():
 
   user_question = st.text_input("Ask a Question")
 
-  if "messages" not in st.session_state.keys():
+  if "messages" not in st.session_state:
       st.session_state["messages"] = [{"role": "assistant", "content": "Hello there, how can I help you?"}]
 
-  if "messages" in st.session_state.keys():
-      for message in st.session_state.messages:
-          with st.write(message["role"]):
-              st.write(message["content"])
+      # Display previous messages
+  for message in st.session_state.messages:
+      st.write(f"**{message['role'].capitalize()}**: {message['content']}")
 
-  if user_question is not None:
+  if user_question:
+      # Add user's question to the chat history
       st.session_state.messages.append({"role": "user", "content": user_question})
+      st.write(f"**User**: {user_question}")
 
-      with st.write("user"):
-          st.write(user_question)
+      # Get response from the Cohere model
+      with st.spinner("Loading..."):
+          ai_response = get_response_from_cohere(context, user_question)
 
-      if st.session_state.messages[-1]["role"] != "assistant":
-          with st.write("assistant"):
-              with st.spinner("Loading"):
-                  ai_response = get_response_from_cohere(context, user_question)
-                  st.write(ai_response)
-
-          new_ai_message = {"role": "assistant", "content": ai_response}
-          st.session_state.messages.append(new_ai_message)
+      # Add the AI's response to the chat history
+      st.write(f"**Assistant**: {ai_response}")
+      st.session_state.messages.append({"role": "assistant", "content": ai_response})
