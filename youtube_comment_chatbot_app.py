@@ -6,7 +6,7 @@ co = cohere.Client(cohere_api_key)
 def app():
   st.title("YouTube Comment ChatBot")
   df_clean = st.session_state.test
-  context = " ".join(df['Comment'].dropna().tolist())
+  context = " ".join(df_clean['Comment'].dropna().tolist())
 
   user_question = st.chat_input("Ask a Question")
 
