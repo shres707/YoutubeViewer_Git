@@ -24,6 +24,9 @@ def app():
 
   user_question = st.text_input("Ask a Question")
 
+  if st.button("Clear Chat History"):
+      st.session_state["messages"] = []
+
   if "messages" not in st.session_state:
       st.session_state["messages"] = [{"role": "assistant", "content": "Hello there, how can I help you?"}]
 
