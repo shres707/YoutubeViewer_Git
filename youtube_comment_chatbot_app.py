@@ -15,7 +15,7 @@ def app():
 
   if "messages" in st.session_state.keys():
       for message in st.session_state.messages:
-          with st.chat_message(message["role"]):
+          with st.write(message["role"]):
               st.write(message["content"])
 
   if user_question is not None:
