@@ -100,6 +100,7 @@ def app():
         comment = latest_comment
         transcript_data = st.session_state.transcript_data
         video_summary = " ".join(transcript_data)
+        comment="the video is too long"
         reply = generate_reply(comment, video_summary)
         # st.header("Reply:")
         st.markdown('<p class="label">Reply:</p>', unsafe_allow_html=True)
