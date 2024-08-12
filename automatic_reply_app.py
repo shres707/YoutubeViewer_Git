@@ -35,8 +35,8 @@ def generate_reply(comment, video_summary):
             relevant_chunks.append(chunk)
 
     if not relevant_chunks:
-        aggregated_context = "Try answering the question from your own database and if you can not answer then reply, 'sorry I can not help you with it'"
-
+        #aggregated_context = "Try answering the question from your own database and if you can not answer then reply, 'sorry I can not help you with it'"
+        return "Sorry I can't help you."  # Fallback if no relevant chunks are found
 
         # Aggregate all relevant chunks into one context
     aggregated_context = " ".join(relevant_chunks)
