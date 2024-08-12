@@ -35,5 +35,6 @@ torch
 cohere
 youtube-transcript-api
 scikit-learn
+sentence_transformers
 
 
