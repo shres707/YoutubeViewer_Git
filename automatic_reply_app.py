@@ -101,7 +101,7 @@ def app():
         comment = latest_comment
         transcript_data = st.session_state.transcript_data
         video_summary = " ".join(transcript_data)
-        comment="If I play a cross block defense shot. Should I rush to cross court too?"
+       #comment="If I play a cross block defense shot. Should I rush to cross court too?"
         reply = generate_reply(comment, video_summary)
         # st.header("Reply:")
         st.markdown('<p class="label">Reply:</p>', unsafe_allow_html=True)
