@@ -8,7 +8,7 @@ def app():
   df_clean = st.session_state.test
   context = " ".join(df_clean['Comment'].dropna().tolist())
 
-  user_question = st.chat_input("Ask a Question")
+  user_question = st.text_input("Ask a Question")
 
   if "messages" not in st.session_state.keys():
       st.session_state["messages"] = [{"role": "assistant", "content": "Hello there, how can I help you?"}]
