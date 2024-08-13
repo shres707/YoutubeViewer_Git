@@ -24,7 +24,7 @@ def draw_insights(comments, query, chat_history):
     def retrieve_relevant_comments(query, comment_embeddings, similarity_threshold=0.1, top_n=5):
         query_embedding = model.encode([query])[0]
 
-        similarities = [(comment, cosine_similarity([query_embedding], [embedding])[0][0])
+        similarities = [(comment, cosine_similarity(query_embedding, embedding.reshape(1,-1))[0][0])
                         for comment, embedding in comment_embeddings]
 
         filtered_comments = [comment for comment, similarity in similarities if similarity >= similarity_threshold]
