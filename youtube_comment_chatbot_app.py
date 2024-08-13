@@ -22,21 +22,19 @@ def draw_insights(comments, query, chat_history):
         return list(zip(comments, embeddings))
 
     def retrieve_relevant_comments(query, comment_embeddings, similarity_threshold=0.1, top_n=5):
-        query_embedding = model.encode([query]).reshape(1, -1)
+        query_embedding = model.encode([query])[0]
 
         similarities = []
         for comment, embedding in comment_embeddings:
-            embedding_2d = embedding.reshape(1, -1)
-            similarity = cosine_similarity(query_embedding, embedding_2d)[0][0]
-            similarities.append((comment, similarity))
+            query_embedding = model.encode([query])[0]
 
+            similarities = [(comment, cosine_similarity([query_embedding], [embedding])[0][0])
+                            for comment, embedding in comment_embeddings]
 
-
-
-        filtered_comments = [comment for comment, similarity in similarities if similarity >= similarity_threshold]
-        filtered_comments = sorted(filtered_comments,
-                                   key=lambda x: cosine_similarity([query_embedding], model.encode([x]).reshape(1,-1))[0][0],
-                                   reverse=True)
+            filtered_comments = [comment for comment, similarity in similarities if similarity >= similarity_threshold]
+            filtered_comments = sorted(filtered_comments,
+                                       key=lambda x: cosine_similarity([query_embedding], [model.encode([x])[0]])[0][0],
+                                       reverse=True)
 
         return filtered_comments[:top_n]
 
@@ -88,7 +86,8 @@ def chat_session(comments):
 def app():
     st.title("YouTube Comment ChatBot")
     df_clean = st.session_state.test
-    context = " ".join(df_clean['Comment'].dropna().tolist())
+    #context = " ".join(df_clean['Comment'].dropna().tolist())
+    context=df_clean['comment'].dropna().tolist()
     chat_session(context)
 
     '''user_question = st.text_input("Ask a Question")
