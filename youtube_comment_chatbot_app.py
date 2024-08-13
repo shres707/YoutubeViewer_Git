@@ -22,15 +22,11 @@ def draw_insights(comments, query, chat_history):
         return list(zip(comments, embeddings))
 
     def retrieve_relevant_comments(query, comment_embeddings, similarity_threshold=0.1, top_n=5):
-        query_embedding = model.encode([query])
+        query_embedding = model.encode([query]).reshape(1, -1)
 
         similarities = []
         for comment, embedding in comment_embeddings:
-            # Ensure embedding is 2D
-            if embedding.ndim == 1:
-                embedding_2d = embedding.reshape(1, -1)
-            else:
-                embedding_2d = embedding
+            embedding_2d = embedding.reshape(1, -1)
             similarity = cosine_similarity(query_embedding, embedding_2d)[0][0]
             similarities.append((comment, similarity))
 
