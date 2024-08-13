@@ -87,7 +87,7 @@ def app():
     st.title("YouTube Comment ChatBot")
     df_clean = st.session_state.test
     #context = " ".join(df_clean['Comment'].dropna().tolist())
-    context=df_clean['comment'].dropna().tolist()
+    context=df_clean['Comment'].dropna().tolist()
     chat_session(context)
 
     '''user_question = st.text_input("Ask a Question")
