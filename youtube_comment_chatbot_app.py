@@ -71,20 +71,21 @@ def draw_insights(comments, query, chat_history):
 def chat_session(comments):
     global chat_history
     while True:
-        query = input("Enter your question (or type 'exit' to end): ")
+        query = st.text_input("Enter your question (or type 'exit' to end): ")
         print(query)
         if query.lower() == 'exit':
             break
         insights = draw_insights(comments, query, chat_history)
-        print(f"Response: {insights}")
+        st.write(f"Response: {insights}")
 
 
 def app():
     st.title("YouTube Comment ChatBot")
     df_clean = st.session_state.test
     context = " ".join(df_clean['Comment'].dropna().tolist())
+    chat_session(context)
 
-    user_question = st.text_input("Ask a Question")
+    '''user_question = st.text_input("Ask a Question")
 
     if st.button("Clear Chat History"):
         st.session_state["messages"] = []
@@ -107,4 +108,4 @@ def app():
 
         # Add the AI's response to the chat history
         st.write(f"**Assistant**: {ai_response}")
-        st.session_state.messages.append({"role": "assistant", "content": ai_response})
+        st.session_state.messages.append({"role": "assistant", "content": ai_response})'''
