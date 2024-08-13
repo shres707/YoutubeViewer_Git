@@ -78,12 +78,8 @@ def app():
     st.title("YouTube Comment ChatBot")
 
     # Load the DataFrame and extract comments
-    df_clean = st.session_state.get('test', pd.DataFrame())
-    if 'Comment' in df_clean.columns:
-        comments = df_clean['Comment'].dropna().tolist()
-    else:
-        st.error("DataFrame is missing 'Comment' column or is not loaded.")
-        return
+    df_clean = st.session_state.test
+    context = df_clean['Comment'].dropna().tolist()
 
     # Display chat history
     if st.session_state.chat_history:
