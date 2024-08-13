@@ -9,6 +9,9 @@ co = cohere.Client(cohere_api_key)
 # Initialize the SentenceTransformer model
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
+# Initialize the chat history
+chat_history = []
+
 
 def draw_insights(comments, query, chat_history):
     similarity_threshold = 0.1
@@ -40,8 +43,8 @@ def draw_insights(comments, query, chat_history):
         history = ""
         for h in chat_history:
             # Check if both keys exist in the chat history entries
-            if 'query' in h and 'response' in h:
-                history += f"Query: {h['query']}\nResponse: {h['response']}\n\n"
+            if 'role' in h and 'content' in h:
+                history += f"{h['role'].capitalize()}: {h['content']}\n\n"
 
         prompt = (
             f"{history}\n\n"
@@ -64,38 +67,40 @@ def draw_insights(comments, query, chat_history):
         )
 
         reply = response.generations[0].text.strip()
-        chat_history.append({"query": query, "response": reply})
+        chat_history.append({"role": "assistant", "content": reply})
         return reply
 
     comment_embeddings = embed_comments(comments)
     retrieved_comments = retrieve_relevant_comments(query, comment_embeddings, similarity_threshold, top_n)
     return get_response_from_cohere(retrieved_comments, query, chat_history)
 
+
 def app():
     st.title("YouTube Comment ChatBot")
+    df_clean = st.session_state.test
+    context = df_clean['Comment'].dropna().tolist()
 
-    if 'messages' not in st.session_state:
-        st.session_state['messages'] = []
+    if 'chat_history' not in st.session_state:
+        st.session_state.chat_history = []
 
-    if 'context' not in st.session_state:
-        df_clean = st.session_state.test
-        st.session_state['context'] = df_clean['Comment'].dropna().tolist()
-
-    # Display previous messages
-    for message in st.session_state['messages']:
-        st.write(f"**{message['role'].capitalize()}**: {message['content']}")
+    chat_history = st.session_state.chat_history
 
     user_question = st.text_input("Ask a Question")
-
-    if st.button("Submit"):
-        if user_question:
-            st.session_state['messages'].append({"role": "user", "content": user_question})
-
-            with st.spinner("Loading..."):
-                response = draw_insights(st.session_state['context'], user_question, st.session_state['messages'])
-                st.session_state['messages'].append({"role": "assistant", "content": response})
-
-            st.write(f"**Assistant**: {response}")
-
     if st.button("Clear Chat History"):
-        st.session_state['messages'] = []
+        st.session_state.chat_history = []
+        chat_history = []
+
+    if user_question:
+        st.session_state.chat_history.append({"role": "user", "content": user_question})
+        st.write(f"**User**: {user_question}")
+
+        # Get response from the Cohere model
+        with st.spinner("Loading..."):
+            ai_response = draw_insights(context, user_question, chat_history)
+
+        st.write(f"**Assistant**: {ai_response}")
+        st.session_state.chat_history.append({"role": "assistant", "content": ai_response})
+
+    # Display previous messages
+    for message in st.session_state.chat_history:
+        st.write(f"**{message['role'].capitalize()}**: {message['content']}")
