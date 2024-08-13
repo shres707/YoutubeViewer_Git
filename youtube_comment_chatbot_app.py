@@ -34,7 +34,14 @@ def draw_insights(comments, query, chat_history):
     def get_response_from_cohere(retrieved_comments, query, chat_history):
         context = " ".join(retrieved_comments)
 
-        history = " ".join([f"Query: {h['query']}\nResponse: {h['response']}" for h in chat_history])
+        # Debug print statements
+        st.write("Chat History:", chat_history)
+
+        history = ""
+        for h in chat_history:
+            # Check if both keys exist in the chat history entries
+            if 'query' in h and 'response' in h:
+                history += f"Query: {h['query']}\nResponse: {h['response']}\n\n"
 
         prompt = (
             f"{history}\n\n"
@@ -63,7 +70,6 @@ def draw_insights(comments, query, chat_history):
     comment_embeddings = embed_comments(comments)
     retrieved_comments = retrieve_relevant_comments(query, comment_embeddings, similarity_threshold, top_n)
     return get_response_from_cohere(retrieved_comments, query, chat_history)
-
 
 def app():
     st.title("YouTube Comment ChatBot")
