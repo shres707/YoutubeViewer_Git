@@ -45,11 +45,11 @@ def scrape_comments_with_replies(url):
     if url not in st.session_state:
         st.session_state.url = url
 
-    #ID=get_id(url)
+    """ID=get_id(url)
 
     #Extracting YouTube transcript
 
-    #transcript_data=get_transcript(ID)
+    #transcript_data=get_transcript(ID)"""
 
 
     
@@ -139,8 +139,8 @@ def scrape_comments_with_replies(url):
     if test not in st.session_state:
        st.session_state.test=test
 
-    if transcript_data not in st.session_state:
-        st.session_state.transcript_data = transcript_data
+    """if transcript_data not in st.session_state:
+        st.session_state.transcript_data = transcript_data"""
        
     #st.dataframe(test['Comment'])   
     st.dataframe(test)
