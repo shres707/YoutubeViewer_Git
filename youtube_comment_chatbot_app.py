@@ -11,6 +11,7 @@ co = cohere.Client(cohere_api_key)
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
 
+
 def embed_comments(comments):
     embeddings = model.encode(comments)
     return list(zip(comments, embeddings))

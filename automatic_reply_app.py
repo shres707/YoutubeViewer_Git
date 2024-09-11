@@ -5,11 +5,27 @@ from sentence_transformers import SentenceTransformer
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+from youtube_transcript_api import YouTubeTranscriptApi
 
 cohere_api_key = "eH1W45sG4i7AiEgI776DKgExK22QsTkCfWWdp7ue"
 co = cohere.Client(cohere_api_key)
 
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
+
+def get_id(url):
+    u_pars = urlparse(url)
+    quer_v = parse_qs(u_pars.query).get('v')
+    if quer_v:
+        return quer_v[0]
+    pth = u_pars.path.split('/')
+    if pth:
+        return pth[-1]
+
+def get_transcript(video_id):
+   transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
+   transcript_data = [t['text'] for t in transcript_list]
+   return transcript_data
+
 
 
 def embed_text(text):
@@ -99,6 +115,12 @@ def app():
     if st.button('Generate Reply', key='generate_reply_button'):
         # comment = latest_comment_display
         comment = latest_comment
+        if transcript_data not in st.session_state:
+            st.session_state.url = url
+            ID = get_id(url)
+            # Extracting YouTube transcript
+            transcript_data = get_transcript(ID)
+            st.session_state.transcript_data = transcript_data
         transcript_data = st.session_state.transcript_data
         video_summary = " ".join(transcript_data)
        #comment="If I play a cross block defense shot. Should I rush to cross court too?"
