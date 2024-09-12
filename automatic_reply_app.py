@@ -106,8 +106,7 @@ def app():
 
     if st.button('Generate Reply', key='generate_reply_button'):
         # comment = latest_comment_display
-        #comment = latest_comment
-        comment="which are the design patterns covered?"
+        comment = latest_comment
         transcript_data=[]
         if transcript_data not in st.session_state:
             ID=st.session_state.ID
