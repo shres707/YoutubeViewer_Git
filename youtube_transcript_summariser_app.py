@@ -16,11 +16,12 @@ def app():
   if transcript_data not in st.session_state:
       ID=st.session_state.ID
       # Extracting YouTube transcript
-      try:
+      """try:
            transcript_data = get_transcript(ID)
       except Exception as e:
           st.write("Transcripts Disabled ...Try after sometime")
-          return
+          return"""
+      transcript_data = get_transcript(ID)
       st.session_state.transcript_data = transcript_data
 
   transcript_data = st.session_state.transcript_data
