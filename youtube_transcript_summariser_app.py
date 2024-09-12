@@ -12,6 +12,7 @@ def get_transcript(video_id):
 
 def app():
   st.title("YouTube Transcript Summariser")
+  transcript_data=[]
   if transcript_data not in st.session_state:
       ID=st.session_state.ID
       # Extracting YouTube transcript
