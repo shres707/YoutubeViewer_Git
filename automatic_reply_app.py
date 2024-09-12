@@ -108,7 +108,7 @@ def app():
         # comment = latest_comment_display
         comment = latest_comment
         if transcript_data not in st.session_state:
-            st.session_state.ID = ID
+            ID=st.session_state.ID
             # Extracting YouTube transcript
             transcript_data = get_transcript(ID)
             st.session_state.transcript_data = transcript_data
