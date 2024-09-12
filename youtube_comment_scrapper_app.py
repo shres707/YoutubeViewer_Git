@@ -16,7 +16,7 @@ youtube = build('youtube', 'v3', developerKey=api_key,cache_discovery=False)
 #box = [['Name', 'Comment', 'Time', 'Likes', 'Reply Count']]
 box=[]
 
-"""def get_id(url):
+def get_id(url):
     u_pars = urlparse(url)
     quer_v = parse_qs(u_pars.query).get('v')
     if quer_v:
@@ -25,10 +25,7 @@ box=[]
     if pth:
         return pth[-1]
 
-def get_transcript(video_id):
-   transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
-   transcript_data = [t['text'] for t in transcript_list]
-   return transcript_data"""
+
 
 def scrape_comments_with_replies(url):
 
@@ -42,10 +39,12 @@ def scrape_comments_with_replies(url):
       st.write("URL entered is not valid , Please enter valid one ")
       return
 
-    if url not in st.session_state:
-        st.session_state.url = url
+    ID=get_id(url)
 
-    """ID=get_id(url)
+    if ID not in st.session_state:
+        st.session_state.ID = ID
+
+
 
     #Extracting YouTube transcript
 

@@ -12,14 +12,6 @@ co = cohere.Client(cohere_api_key)
 
 model = SentenceTransformer('paraphrase-MiniLM-L6-v2')
 
-def get_id(url):
-    u_pars = urlparse(url)
-    quer_v = parse_qs(u_pars.query).get('v')
-    if quer_v:
-        return quer_v[0]
-    pth = u_pars.path.split('/')
-    if pth:
-        return pth[-1]
 
 def get_transcript(video_id):
    transcript_list = YouTubeTranscriptApi.get_transcript(video_id)
@@ -116,8 +108,7 @@ def app():
         # comment = latest_comment_display
         comment = latest_comment
         if transcript_data not in st.session_state:
-            st.session_state.url = url
-            ID = get_id(url)
+            st.session_state.ID = ID
             # Extracting YouTube transcript
             transcript_data = get_transcript(ID)
             st.session_state.transcript_data = transcript_data
