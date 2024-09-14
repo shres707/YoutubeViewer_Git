@@ -69,7 +69,7 @@ def get_response_from_cohere(retrieved_comments, query, chat_history):
 
 def draw_insights(comments, query, chat_history):
     similarity_threshold = 0.1
-    top_n = 5
+    top_n = 10
 
     comment_embeddings = embed_comments(comments)
     retrieved_comments = retrieve_relevant_comments(query, comment_embeddings, similarity_threshold, top_n)
