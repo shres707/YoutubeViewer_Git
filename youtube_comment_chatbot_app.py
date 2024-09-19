@@ -79,8 +79,8 @@ def draw_insights(comments, query, chat_history):
 def app():
     st.title("YouTube Comment ChatBot")
     df_clean = st.session_state.test
-    #context = df_clean['Comment'].dropna().tolist()
-    context = "What are the Python libraries covered in this video?"
+    context = df_clean['Comment'].dropna().tolist()
+
 
     if 'chat_history' not in st.session_state:
         st.session_state.chat_history = []

@@ -79,7 +79,8 @@ def generate_reply(comment, video_summary):
 def app():
     st.title("Automatic Reply")
     df_clean = st.session_state.test
-    latest_comment = df_clean['Comment'].values[0]
+    #latest_comment = df_clean['Comment'].values[0]
+    latest_comment = "what are python libraries covered in this video?"
     # Use HTML and CSS to style the boxes
     st.markdown("""
              <style>
