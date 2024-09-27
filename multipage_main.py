@@ -14,7 +14,7 @@ PAGES = {
     "EDA"  : eda_app,
     "Sentiment Analysis": sentiment_app,
     #"Automatic Reply": automatic_reply_app,
-    #"Transcript Summariser": youtube_transcript_summariser_app,
+    "Transcript Summariser": youtube_transcript_summariser_app,
     #"Comment ChatBot": youtube_comment_chatbot_app
 
 }
