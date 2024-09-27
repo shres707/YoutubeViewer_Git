@@ -2,7 +2,7 @@ import streamlit as st
 import cohere
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
-from langchain.chains import LLMChain
+#from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 from youtube_transcript_api import YouTubeTranscriptApi
