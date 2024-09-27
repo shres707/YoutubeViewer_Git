@@ -32,7 +32,7 @@ langchain
 langchain_community
 transformers
 torch
-cohere==5.10.0
+cohere
 youtube-transcript-api
 scikit-learn
 sentence_transformers
