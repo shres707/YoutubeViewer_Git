@@ -52,7 +52,7 @@ def get_response_from_cohere(retrieved_comments, query, chat_history):
         "Reply:"
     )
 
-    response = co.generate(
+    response = co.chat(
         model='command-xlarge-nightly',
         prompt=prompt,
         max_tokens=2000,
