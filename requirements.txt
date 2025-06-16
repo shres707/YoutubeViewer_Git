@@ -37,5 +37,6 @@ cohere
 youtube-transcript-api
 scikit-learn
 sentence_transformers
+altair==4.0.0
 
 
