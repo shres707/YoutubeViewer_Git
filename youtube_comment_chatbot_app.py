@@ -60,7 +60,7 @@ def get_response_from_cohere(retrieved_comments, query, chat_history):
         
     )
 
-    reply = response.generations[0].text.strip()
+    reply = response.text.strip()
     chat_history.append({"query": query, "response": reply})
     return reply
 
