@@ -54,12 +54,10 @@ def get_response_from_cohere(retrieved_comments, query, chat_history):
 
     response = co.chat(
         model='command-xlarge-nightly',
-        prompt=prompt,
+        message=prompt,
         max_tokens=2000,
-        temperature=0.7,
-        k=0,
-        p=0.75,
-        stop_sequences=["Reply:"]
+        temperature=0.7
+        
     )
 
     reply = response.generations[0].text.strip()
