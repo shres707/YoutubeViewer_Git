@@ -33,7 +33,7 @@ langchain_community
 transformers
 torch
 pydantic==1.8.2
-cohere
+cohere==4.40.2
 youtube-transcript-api
 scikit-learn
 sentence_transformers
